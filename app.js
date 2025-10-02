@@ -1,9 +1,9 @@
 // Välj start och mål (lat, lon). Exempel: Stockholm C -> Gamla stan
-const start = [59.3306, 18.0586];
-const end   = [59.3248, 18.0711];
+const start = [58.4005773, 15.658248];
+const end   = [58.4074017, 15.6330793];
 
 // Hastighet i km/h för bilen
-const speedKmh = 50; // ändra fritt
+const speedKmh = 100;
 
 // Initiera karta
 const map = L.map('map');
