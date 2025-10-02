@@ -3,7 +3,7 @@ const start = [58.4005773, 15.658248];
 const end   = [58.4074017, 15.6330793];
 
 // Hastighet i km/h för bilen
-const speedKmh = 100;
+const speedKmh = 10000;
 
 // Initiera karta
 const map = L.map('map');
