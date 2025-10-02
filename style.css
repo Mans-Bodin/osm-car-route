@@ -1,1 +1,16 @@
+html, body { height: 100%; margin: 0; }
+#map { height: 100vh; width: 100vw; }
 
+/*car ikon*/
+.car-wrapper {
+.car {
+  font-size: 26px;
+  line-height: 1;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.6));
+  transform-origin: center center; /*rotera runt mitten*/
+}
+
+.route-line {
+  stroke: #0ea5e9; /*blå*/
+}
+}
