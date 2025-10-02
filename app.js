@@ -1,4 +1,4 @@
-// Välj start och mål (lat, lon). Exempel: Stockholm C -> Gamla stan
+// start and stop
 const start = [58.4005773, 15.658248];
 const end   = [58.4074017, 15.6330793];
 
@@ -16,15 +16,14 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 const startMarker = L.marker(start, { title: 'Start' }).addTo(map);
 const endMarker   = L.marker(end,   { title: 'Mål'   }).addTo(map);
 
-// Hämta rutt från OSRM 
 const url = `https://router.project-osrm.org/route/v1/driving/${start[1]},${start[0]};${end[1]},${end[0]}?overview=full&geometries=geojson`;
 
 fetch(url)
   .then(r => r.json())
   .then(data => {
     if (!data.routes || !data.routes.length) throw new Error('Ingen rutt hittades');
-    const coords = data.routes[0].geometry.coordinates; // [lon, lat]
-    const latlngs = coords.map(c => [c[1], c[0]]);       // -> [lat, lon]
+    const coords = data.routes[0].geometry.coordinates;
+    const latlngs = coords.map(c => [c[1], c[0]]);
 
     const routeLine = L.polyline(latlngs, { color: '#0ea5e9', weight: 5, opacity: 0.9, className: 'route-line' }).addTo(map);
     map.fitBounds(routeLine.getBounds(), { padding: [30, 30] });
@@ -57,14 +56,14 @@ fetch(url)
       const p = pointAtDistance(latlngs, cum, d);
       car.setLatLng(p.latlng);
 
-      const nextRef = p.nextIndex < latlngs.length ? latlngs[p.nextIndex] : latlngs[latlngs.length - 1];
-      const ang = bearing(p.latlng, nextRef); 
-      const cssAngle = ang - 90; 
-      const el = car.getElement();
-      if (el) {
-        const inner = el.querySelector('.car');
-        if (inner) inner.style.transform = `rotate(${cssAngle}deg)`;
-      }
+    //   const nextRef = p.nextIndex < latlngs.length ? latlngs[p.nextIndex] : latlngs[latlngs.length - 1];
+    //   const ang = bearing(p.latlng, nextRef); 
+    //   const cssAngle = ang - 90; 
+    //   const el = car.getElement();
+    //   if (el) {
+    //     const inner = el.querySelector('.car');
+    //     if (inner) inner.style.transform = `rotate(${cssAngle}deg)`;
+    //   }
 
       requestAnimationFrame(frame);
     }
