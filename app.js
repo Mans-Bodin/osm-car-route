@@ -96,7 +96,7 @@ function pointAtDistance(latlngs, cum, d) {
     const last = latlngs[latlngs.length - 1];
     return { latlng: L.latLng(last[0], last[1]), nextIndex: latlngs.length - 1 };
   }
-  // Hitta segmentet: cum[i] <= d < cum[i+1]
+ 
   let i = 0;
   while (i < cum.length - 1 && !(cum[i] <= d && d < cum[i + 1])) i++;
   const a = latlngs[i];
