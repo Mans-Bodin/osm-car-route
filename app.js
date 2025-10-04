@@ -1,9 +1,9 @@
 // start and stop
 const start = [58.4005773, 15.658248];
-const end   = [58.4074017, 15.6330793];
+const end   = [58.410734, 15.623007];
 
 // Hastighet i km/h för bilen
-const speedKmh = 10000;
+const speedKmh = 100;
 
 // Initiera karta
 const map = L.map('map');
@@ -56,14 +56,14 @@ fetch(url)
       const p = pointAtDistance(latlngs, cum, d);
       car.setLatLng(p.latlng);
 
-    //   const nextRef = p.nextIndex < latlngs.length ? latlngs[p.nextIndex] : latlngs[latlngs.length - 1];
-    //   const ang = bearing(p.latlng, nextRef); 
-    //   const cssAngle = ang - 90; 
-    //   const el = car.getElement();
-    //   if (el) {
-    //     const inner = el.querySelector('.car');
-    //     if (inner) inner.style.transform = `rotate(${cssAngle}deg)`;
-    //   }
+      const nextRef = p.nextIndex < latlngs.length ? latlngs[p.nextIndex] : latlngs[latlngs.length - 1];
+      const ang = bearing(p.latlng, nextRef); 
+      const cssAngle = ang - 180; 
+      const el = car.getElement();
+      if (el) {
+        const inner = el.querySelector('.car');
+        if (inner) inner.style.transform = `rotate(${cssAngle}deg)`;
+      }
 
       requestAnimationFrame(frame);
     }
